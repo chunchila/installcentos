@@ -280,13 +280,11 @@ resource "azurerm_virtual_machine" "virtual_machine_deploy" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo yum update -y",
-      "sudo yum install git docker net-tools -y",
-      "git clone https://github.com/gshipley/installcentos.git",
       "export DOMAIN=roman.openshift.com",
       "export USERNAME=admin",
       "export PASSWORD=password",
-      "curl https://raw.githubusercontent.com/gshipley/installcentos/master/install-openshift.sh | INTERACTIVE=false sudo /bin/bash",
+      "sudo su",
+      "curl https://raw.githubusercontent.com/gshipley/installcentos/master/install-openshift.sh | INTERACTIVE=false  /bin/bash",
       //"sudo shutdown -r now",
     ]
     connection {
